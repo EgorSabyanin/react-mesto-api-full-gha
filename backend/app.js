@@ -1,6 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
+
+// CORS Settings
+
+const allowedCors = [
+  'http://mesto-frontend.nomoredomains.rocks',
+  'https://mesto-frontend.nomoredomains.rocks',
+  'localhost:3000',
+  'http://localhost',
+  'http://localhost:3000',
+  'http://localhost:3001',
+];
+
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
 
 // Middlewares
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -12,8 +30,16 @@ const { PORT = 3000, DB_CONNECTION = 'mongodb://127.0.0.1:27017/mestodb' } = pro
 
 const app = express();
 
+// For code review delete later
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(express.json());
 app.use(requestLogger);
+app.use(cors(corsOptions));
 app.use(router);
 
 // Подключение к БД
