@@ -1,0 +1,16 @@
+.header__icon {
+  display: block;
+  max-width: 142px;
+}
+
+@media screen and (min-width: 320px) {
+  .header__icon {
+    margin-left: 27px;
+  }
+}
+
+@media screen and (min-width: 880px) {
+  .header__icon {
+    margin-left: unset;
+  }
+}

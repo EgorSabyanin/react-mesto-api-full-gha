@@ -1,0 +1,16 @@
+.page__container {
+  margin: 0 auto;
+  width: 880px;
+}
+
+@media screen and (min-width: 320px) {
+  .page__container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 880px) {
+  .page__container {
+    width: 880px;
+  }
+}

@@ -1,0 +1,18 @@
+.element__caption {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-left: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 282px);
+  font-family: "Inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--black);
+}
