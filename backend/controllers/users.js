@@ -1,4 +1,4 @@
-// const bcrypt = require('bcrypt');
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
@@ -132,7 +132,7 @@ module.exports.login = (req, res, next) => {
 
           const token = jwt.sign(
             { _id: user._id },
-            'big-secret',
+            process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret',
             {
               expiresIn: '7d',
             },
