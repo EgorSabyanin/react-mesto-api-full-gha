@@ -21,7 +21,7 @@ const loginJoi = celebrate({
 
 const getUserByIdJoi = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().required().length(24),
+    userId: Joi.string().required().hex().length(24),
   }),
 });
 
