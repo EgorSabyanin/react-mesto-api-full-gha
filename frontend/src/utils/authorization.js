@@ -54,5 +54,5 @@ class Authorization {
 }
 
 export const auth = new Authorization({
-  baseUrl: "https://auth.nomoreparties.co",
+  baseUrl: "https://backend-mesto-es.nomoredomains.rocks",
 });
