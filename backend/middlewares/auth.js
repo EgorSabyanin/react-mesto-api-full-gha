@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 
 const AuthorizationError = require('../errors/authError');
 
+const { JWT_SECRET } = process.env;
+
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
 
@@ -14,7 +16,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, 'big-secret');
+    payload = jwt.verify(token, process.env.NODE_ENV === 'production' ? JWT_SECRET : 'develop-secret');
   } catch (error) {
     return next(new AuthorizationError('Авторизируйтесь!'));
   }

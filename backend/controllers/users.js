@@ -14,6 +14,8 @@ const {
   SUCCESS_CREATED,
 } = require('../constants/constants');
 
+const { JWT_SECRET } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.status(SUCCESS_SUCCESS).send(users))
@@ -130,13 +132,7 @@ module.exports.login = (req, res, next) => {
             return next(new AuthorizationError('Неправильный логин или пароль'));
           }
 
-          const token = jwt.sign(
-            { _id: user._id },
-            process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret',
-            {
-              expiresIn: '7d',
-            },
-          );
+          const token = jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? JWT_SECRET : 'develop-secret', { expiresIn: '7d' });
 
           return res.status(SUCCESS_SUCCESS).send({ token });
         });
